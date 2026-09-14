@@ -21,4 +21,24 @@ case "$choice" in
     file=$(find . -maxdepth 1 -type f | wc -l)
     directory=$(find . -maxdepth 1 -type d | wc -l)
     directory=$((directory-1))
-    
+    echo "number of files: $file"
+    echo "number of directories: $directory"
+    ;;
+3)
+    read -p "enter the file name" file
+    if [ -f "$file" ]
+    then
+    ls -l --time-style=long-iso "$file" | tr -s ' ' | cut -d' ' -f6,7
+    else
+    echo "file not existed"
+    fi
+    ;;
+4)
+    echo "exiting..."
+    exit 0
+    ;;
+*)
+    echo "invalid choice"
+    ;;
+esac
+done
